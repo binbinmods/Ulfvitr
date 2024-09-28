@@ -64,3 +64,4 @@
 /Users/kevinmccoy/Library/Application Support/Steam/steamapps/common/Across the Obelisk/BepInEx/Mod Development/Hero Creations/Ulfvitr/UlfvitrTraits/obj/Debug/netstandard2.1/TheWiseW.BB181B29.Up2Date
 /Users/kevinmccoy/Library/Application Support/Steam/steamapps/common/Across the Obelisk/BepInEx/Mod Development/Hero Creations/Ulfvitr/UlfvitrTraits/obj/Debug/netstandard2.1/com.binbin.TheWiseWolf.dll
 /Users/kevinmccoy/Library/Application Support/Steam/steamapps/common/Across the Obelisk/BepInEx/Mod Development/Hero Creations/Ulfvitr/UlfvitrTraits/obj/Debug/netstandard2.1/com.binbin.TheWiseWolf.pdb
+/Users/kevinmccoy/Library/Application Support/Steam/steamapps/common/Across the Obelisk/BepInEx/Mod Development/Hero Creations/Ulfvitr/UlfvitrTraits/obj/Debug/netstandard2.1/TheWiseWolf.sourcelink.json
