@@ -38,39 +38,18 @@ namespace TheWiseWolf
             if (_trait == "ulfvitrcalltherain")
             { // apply 1 wet to all characters at start of turn
                 string traitName = "Call the Rain";
-                if (_theEvent == Enums.EventActivation.BeginTurn){
-                    if ((Object) _character.HeroData != (Object) null)
-                    {
-                    for (int index = 0; index < teamNpc.Length; ++index)
-                    {
-                        if (teamNpc[index] != null && teamNpc[index].Alive)
-                        {
-                        teamNpc[index].SetAuraTrait(_character, "wet", 1);
-                        if ((Object) teamNpc[index].NPCItem != (Object) null)
-                        {
-                            teamNpc[index].NPCItem.ScrollCombatText(Texts.Instance.GetText("traits_"+traitName), Enums.CombatScrollEffectType.Trait);
-                            EffectsManager.Instance.PlayEffectAC("drink", true, teamNpc[index].NPCItem.CharImageT, false);
-                        }
-                        }
-                    }
+                if ((Object) _character.HeroData != (Object) null){
+                    bool heroFlag = true;
+                    bool enemyFlag = true;
+                    bool randomNpc = false;
+                    bool randomHero = false;
+                    
+                    ApplyAuraCurseTo("wet",1,heroFlag, enemyFlag,randomHero,randomNpc,ref _character,ref teamHero, ref teamNpc, traitName,"drink");
 
-                    for (int index = 0; index < teamHero.Length; ++index)
-                    {
-                        if (teamHero[index] != null && teamHero[index].Alive)
-                        {
-                        teamHero[index].SetAuraTrait(_character, "wet", 1);
-                        if ((Object) teamHero[index].HeroItem != (Object) null)
-                        {
-                            teamHero[index].HeroItem.ScrollCombatText(Texts.Instance.GetText("traits_"+traitName), Enums.CombatScrollEffectType.Trait);
-                            EffectsManager.Instance.PlayEffectAC("drink", true, teamHero[index].HeroItem.CharImageT, false);
-                        }
-                        }
-                    }
-                    }
+                    
                     if (!((Object) _character.HeroItem != (Object) null))
                         return;
                     _character.HeroItem.ScrollCombatText(Texts.Instance.GetText("traits_"+traitName), Enums.CombatScrollEffectType.Trait);
-                    EffectsManager.Instance.PlayEffectAC("shadowimpactsmall", true, _character.HeroItem.CharImageT, false);
                     return;
                 }
             }
@@ -102,7 +81,7 @@ namespace TheWiseWolf
                         EffectsManager.Instance.PlayEffectAC("energy", true, _character.HeroItem.CharImageT, false, 0f);
                     }
                     NPC randNPC = teamNpc[MatchManager.Instance.GetRandomIntRange(0,3)];
-                    if ((randNPC != null) && (randNPC.Alive)){
+                    if ((randNPC != null) && randNPC.Alive){
                         randNPC.SetAuraTrait(_character, "spark", 1);
                     }
                 }
@@ -112,27 +91,36 @@ namespace TheWiseWolf
              
             else if (_trait == "ulfvitrregenerator")
             {// When you apply regen, heal by wet x1
-                if (_theEvent==Enums.EventActivation.AuraCurseSet && _auxString=="regeneration" && _target!= null && _target.IsHero && _target.HasEffect("wet"))
+                if (_auxString=="regeneration" && _target!= null && _target.IsHero && _target.HasEffect("wet"))
                 {
                     int healAmount = _target.HealReceivedFinal(Functions.FuncRoundToInt((float) _auxInt * 1.0f));
                     TraitHeal(ref _character, ref _target, healAmount, _trait);
                 }
             } 
+
             else if (_trait == "ulfvitrconductor")
             {// When you apply wet, deal sparks * 0.5 as indirect damage
                 
-                // done in SetEventPrefix?
+                // done in SetEventPrefix? nvmd trying to do it here
+                if (_character.HeroData!= (Object) null){
+                    if (_auxString=="wet" && !_target.IsHero && _target.HasEffect("spark")){
+                        _target.IndirectDamage(Enums.DamageType.Lightning, Functions.FuncRoundToInt((float)_target.GetAuraCharges("spark") * 0.5f));
+                    }
+                }
 
             } 
             else if (_trait == "ulfvitrlifebloom")
             { //At end of turn, heal all heroes by wet * 0.70
-                if (_theEvent == Enums.EventActivation.EndTurn){
+                Plugin.Log.LogDebug("Lifebloom Start:");
+                if (_character.HeroData!=null){
                     for (int i = 0; i < teamHero.Length; i++)
                     {
                         if (teamHero[i] != null && teamHero[i].Alive)
                         {
                             int healAmount = Functions.FuncRoundToInt((float)teamHero[i].GetAuraCharges("wet") * 0.70f);
-                            TraitHeal(ref _character, ref _target, healAmount, _trait);
+                            Plugin.Log.LogDebug("Lifebloom Heal Amount: " + healAmount);
+                            TraitHealHero(ref _character, ref teamHero[i], healAmount, _trait);
+
                         }
                     }
                 } 
@@ -163,10 +151,10 @@ namespace TheWiseWolf
         [HarmonyPatch(typeof(Character), "SetEvent")]
         public static void SetEventPrefix(ref Character __instance, ref Enums.EventActivation theEvent, Character target = null)
         {
-            if (theEvent == Enums.EventActivation.AuraCurseSet && !__instance.IsHero && target != null && target.IsHero && target.HaveTrait("ulfvitrconductor") && __instance.HasEffect("spark"))
-            { // if NPC has wet applied to them, deal 50% of their sparks as indirect lightning damage
-                __instance.IndirectDamage(Enums.DamageType.Lightning, Functions.FuncRoundToInt((float)__instance.GetAuraCharges("spark") * 0.5f));
-            }
+            //if (theEvent == Enums.EventActivation.AuraCurseSet && __instance.IsHero && target != null && !target.IsHero && __instance.HaveTrait("ulfvitrconductor") && target.HasEffect("spark"))
+            //if (theEvent == Enums.EventActivation.AuraCurseSet && !__instance.IsHero && target != null && target.IsHero && target.HaveTrait("ulfvitrconductor") && __instance.HasEffect("spark")){ // if NPC has wet applied to them, deal 50% of their sparks as indirect lightning damage
+            //    __instance.IndirectDamage(Enums.DamageType.Lightning, Functions.FuncRoundToInt((float)__instance.GetAuraCharges("spark") * 0.5f));
+            //}
         }
         public static void TraitHeal(ref Character _character, ref Character _target, int healAmount, string traitName)
         {
@@ -191,6 +179,68 @@ namespace TheWiseWolf
             _target.SetEvent(Enums.EventActivation.Healed);
             _character.SetEvent(Enums.EventActivation.Heal, _target);
             _character.HeroItem.ScrollCombatText(Texts.Instance.GetText("traits_"+traitName), Enums.CombatScrollEffectType.Trait);
+        }
+
+        public static void TraitHealHero(ref Character _character, ref Hero _target, int healAmount, string traitName)
+        {
+            int _hp = healAmount;
+            if (_target.GetHpLeftForMax() < healAmount)
+                _hp = _target.GetHpLeftForMax();
+            if (_hp <= 0)
+                return;
+            _target.ModifyHp(_hp);
+            CastResolutionForCombatText _cast = new CastResolutionForCombatText();
+            _cast.heal = _hp;
+            if ((Object) _target.HeroItem != (Object) null)
+            {
+                _target.HeroItem.ScrollCombatTextDamageNew(_cast);
+                EffectsManager.Instance.PlayEffectAC("healimpactsmall", true, _target.HeroItem.CharImageT, false);
+            }
+            else
+            {
+            _target.NPCItem.ScrollCombatTextDamageNew(_cast);
+            EffectsManager.Instance.PlayEffectAC("healimpactsmall", true, _target.NPCItem.CharImageT, false);
+            }
+            _target.SetEvent(Enums.EventActivation.Healed);
+            _character.SetEvent(Enums.EventActivation.Heal, _target);
+            _character.HeroItem.ScrollCombatText(Texts.Instance.GetText("traits_"+traitName), Enums.CombatScrollEffectType.Trait);
+        }
+
+        public static void WhenYouPlayXRefund1Energy(Enums.CardType cardType, ref Character _character, string traitName, string traitID){
+            // too lazy to write this since they all come with secondary effects
+        }
+
+        public static void ApplyAuraCurseTo(string auraCurse, int amount, bool allHeroFlag, bool allNpcFlag, bool randomHeroFlag, bool randomNpcFlag, ref Character _character, ref Hero[] teamHeroes, ref NPC[] teamNpc, string traitName, string soundEffect){
+            if (allNpcFlag){
+                for (int index = 0; index < teamNpc.Length; ++index)
+                    {
+                        if (teamNpc[index] != null && teamNpc[index].Alive)
+                        {
+                        teamNpc[index].SetAuraTrait(_character, auraCurse, amount);
+                        if ((Object) teamNpc[index].NPCItem != (Object) null)
+                        {
+                            teamNpc[index].NPCItem.ScrollCombatText(Texts.Instance.GetText("traits_"+traitName), Enums.CombatScrollEffectType.Trait);
+                            EffectsManager.Instance.PlayEffectAC(soundEffect, true, teamNpc[index].NPCItem.CharImageT, false);
+                        }
+                        }
+                    }
+            }
+            if (allHeroFlag){
+                for (int index = 0; index < teamNpc.Length; ++index)
+                    {
+                        if (teamHeroes[index] != null && teamNpc[index].Alive)
+                        {
+                        teamHeroes[index].SetAuraTrait(_character, auraCurse, amount);
+                        if ((Object) teamNpc[index].NPCItem != (Object) null)
+                        {
+                            teamHeroes[index].HeroItem.ScrollCombatText(Texts.Instance.GetText("traits_"+traitName), Enums.CombatScrollEffectType.Trait);
+                            EffectsManager.Instance.PlayEffectAC(soundEffect, true, teamNpc[index].NPCItem.CharImageT, false);
+                        }
+                        }
+                    }
+            }
+
+
         }
 
         public static string TextChargesLeft(int currentCharges, int chargesTotal)

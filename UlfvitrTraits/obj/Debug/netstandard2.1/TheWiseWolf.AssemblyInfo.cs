@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyDescriptionAttribute("Ulfvitr, The Wise Wolf")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+877d37782fb429988ab14aadb0158329c725ebf2")]
 [assembly: System.Reflection.AssemblyProductAttribute("The Wise Wolf")]
 [assembly: System.Reflection.AssemblyTitleAttribute("com.binbin.TheWiseWolf")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -53,7 +53,7 @@
     "EffectCasterRepeat": false,
     "EffectPreAction": "",
     "EffectTarget": "lightningimpact2",
-    "EffectTrail": "watertrail1",
+    "EffectTrail": "",
     "EffectTrailAngle": "Parabolic",
     "AcEnergyBonus": "",
     "AcEnergyBonusQuantity": 0,
