@@ -1,0 +1,15 @@
+{
+    "Card0": "ulfvitrwatersoflife",
+    "Card1": "healingrain",
+    "Card2": "dispelmagic",
+    "Card3": "zap",
+    "Card4": "chargebattery",
+    "Card5": "",
+    "CardSpecial0": "",
+    "CardSpecial1": "",
+    "PackClass": "Healer",
+    "PackID": "ulfvitr",
+    "PackName": "Ulfvitr",
+    "PerkList": [],
+    "RequiredClass": "stormshaman"
+}
