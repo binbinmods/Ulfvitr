@@ -93,7 +93,9 @@ namespace TheWiseWolf
             {// When you apply regen, heal by wet x1
                 if (_auxString=="regeneration" && _target!= null && _target.IsHero && _target.HasEffect("wet"))
                 {
-                    int healAmount = _target.HealReceivedFinal(Functions.FuncRoundToInt((float) _auxInt * 1.0f));
+                    int targetWet = _target.EffectCharges("wet");
+                    int healAmount = Functions.FuncRoundToInt((float) targetWet * 1.0f);
+                    
                     TraitHeal(ref _character, ref _target, healAmount, _trait);
                 }
             } 
@@ -226,15 +228,15 @@ namespace TheWiseWolf
                     }
             }
             if (allHeroFlag){
-                for (int index = 0; index < teamNpc.Length; ++index)
+                for (int index = 0; index < teamHeroes.Length; ++index)
                     {
-                        if (teamHeroes[index] != null && teamNpc[index].Alive)
+                        if (teamHeroes[index] != null && teamHeroes[index].Alive)
                         {
                         teamHeroes[index].SetAuraTrait(_character, auraCurse, amount);
-                        if ((Object) teamNpc[index].NPCItem != (Object) null)
+                        if ((Object) teamHeroes[index].NPCItem != (Object) null)
                         {
                             teamHeroes[index].HeroItem.ScrollCombatText(Texts.Instance.GetText("traits_"+traitName), Enums.CombatScrollEffectType.Trait);
-                            EffectsManager.Instance.PlayEffectAC(soundEffect, true, teamNpc[index].NPCItem.CharImageT, false);
+                            EffectsManager.Instance.PlayEffectAC(soundEffect, true, teamHeroes[index].NPCItem.CharImageT, false);
                         }
                         }
                     }

@@ -34,7 +34,6 @@
 /Users/kevinmccoy/Library/Application Support/Steam/steamapps/common/Across the Obelisk/BepInEx/Mod Development/Hero Creations/Ulfvitr/UlfvitrTraits/bin/Debug/netstandard2.1/com.binbin.TheWiseWolf.deps.json
 /Users/kevinmccoy/Library/Application Support/Steam/steamapps/common/Across the Obelisk/BepInEx/Mod Development/Hero Creations/Ulfvitr/UlfvitrTraits/bin/Debug/netstandard2.1/com.binbin.TheWiseWolf.dll
 /Users/kevinmccoy/Library/Application Support/Steam/steamapps/common/Across the Obelisk/BepInEx/Mod Development/Hero Creations/Ulfvitr/UlfvitrTraits/bin/Debug/netstandard2.1/com.binbin.TheWiseWolf.pdb
-/Users/kevinmccoy/Library/Application Support/Steam/steamapps/common/Across the Obelisk/BepInEx/Mod Development/Hero Creations/Ulfvitr/UlfvitrTraits/bin/Debug/netstandard2.1/Assembly-CSharp.dll
 /Users/kevinmccoy/Library/Application Support/Steam/steamapps/common/Across the Obelisk/BepInEx/Mod Development/Hero Creations/Ulfvitr/UlfvitrTraits/bin/Debug/netstandard2.1/Obeliskial_Content.dll
 /Users/kevinmccoy/Library/Application Support/Steam/steamapps/common/Across the Obelisk/BepInEx/Mod Development/Hero Creations/Ulfvitr/UlfvitrTraits/bin/Debug/netstandard2.1/Obeliskial_Essentials.dll
 /Users/kevinmccoy/Library/Application Support/Steam/steamapps/common/Across the Obelisk/BepInEx/Mod Development/Hero Creations/Ulfvitr/UlfvitrTraits/bin/Debug/netstandard2.1/UnityEngine.UI.dll
@@ -65,3 +64,4 @@
 /Users/kevinmccoy/Library/Application Support/Steam/steamapps/common/Across the Obelisk/BepInEx/Mod Development/Hero Creations/Ulfvitr/UlfvitrTraits/obj/Debug/netstandard2.1/com.binbin.TheWiseWolf.dll
 /Users/kevinmccoy/Library/Application Support/Steam/steamapps/common/Across the Obelisk/BepInEx/Mod Development/Hero Creations/Ulfvitr/UlfvitrTraits/obj/Debug/netstandard2.1/com.binbin.TheWiseWolf.pdb
 /Users/kevinmccoy/Library/Application Support/Steam/steamapps/common/Across the Obelisk/BepInEx/Mod Development/Hero Creations/Ulfvitr/UlfvitrTraits/obj/Debug/netstandard2.1/TheWiseWolf.sourcelink.json
+/Users/kevinmccoy/Library/Application Support/Steam/steamapps/common/Across the Obelisk/BepInEx/Mod Development/Hero Creations/Ulfvitr/UlfvitrTraits/bin/Debug/netstandard2.1/Assembly-CSharp.dll

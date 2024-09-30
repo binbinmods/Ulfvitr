@@ -98,7 +98,7 @@
     "TargetPosition": "Anywhere",
     "TargetSide": "Friend",
     "TargetType": "Single",
-    "Vanish": false,
+    "Vanish": true,
     "GoldGainQuantity": 0,
     "ShardsGainQuantity": 0,
     "HealSelfPerDamageDonePercent": 0,

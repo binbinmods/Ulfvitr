@@ -8,7 +8,7 @@ target_name = "Ulfvitr, The Wise Wolf"
 csproj_name = "TheWiseWolf"
 
 enabled = True
-load_to_local_ato = False
+load_to_local_ato = True
 doZip = True
 
 
