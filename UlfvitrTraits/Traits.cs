@@ -62,7 +62,7 @@ namespace TheWiseWolf
                     return;
                 if (MatchManager.Instance.activatedTraits != null && MatchManager.Instance.activatedTraits.ContainsKey(_trait) && MatchManager.Instance.activatedTraits[_trait] > traitData.TimesPerTurn - 1)
                     return;
-                if (_castedCard.GetCardTypes().Contains(Enums.CardType.Lightning_Spell) && _character.HeroData != null)
+                if (_castedCard.GetCardTypes().Contains(Enums.CardType.Lightning_Spell) && _character.HeroData != null && _castedCard.EnergyCost >= 1)
                 {
                     if (!MatchManager.Instance.activatedTraits.ContainsKey("ulfvitrmagnet"))
                     {
