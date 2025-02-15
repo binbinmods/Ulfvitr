@@ -35,6 +35,7 @@
 *.py
 *.zip
 *.code-workspace
-UlfvitrTraits/obj/*
-UlfvitrTraits/bin/*
+UlfvitrTraits/obj
+UlfvitrTraits/bin
 Old Ulfvitr Folder/*
+
