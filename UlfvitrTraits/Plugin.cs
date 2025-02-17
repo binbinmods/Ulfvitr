@@ -15,10 +15,20 @@ namespace TheWiseWolf
         internal const int ModDate = 20240916;
         private readonly Harmony harmony = new(PluginInfo.PLUGIN_GUID);
         internal static ManualLogSource Log;
+        public static string characterName = "Ulfvitr";
+        public static string subclassName = "thewisewolf";
+
+        public static ConfigEntry<bool> EnableDebugging { get; set; }
+        public static string debugBase = "Binbin - Testing " + characterName + " ";
+
+
         private void Awake()
         {
             Log = Logger;
             Log.LogInfo($"{PluginInfo.PLUGIN_GUID} {PluginInfo.PLUGIN_VERSION} has loaded!");
+            // register with Obeliskial Essentials
+
+            EnableDebugging = Config.Bind(new ConfigDefinition(subclassName, "Enable Debugging"), true, new ConfigDescription("Enables debugging logs."));
             // register with Obeliskial Essentials
             RegisterMod(
                 _name: PluginInfo.PLUGIN_NAME,
@@ -33,5 +43,24 @@ namespace TheWiseWolf
             // apply patches
             harmony.PatchAll();
         }
+
+        internal static void LogDebug(string msg)
+        {
+            if (EnableDebugging.Value)
+            {
+                Log.LogDebug(debugBase + msg);
+            }            
+        }
+        
+        internal static void LogInfo(string msg)
+        {
+            Log.LogInfo(debugBase + msg);
+        }
+        internal static void LogError(string msg)
+        {
+            Log.LogError(debugBase + msg);
+        }
+    
+    
     }
 }
