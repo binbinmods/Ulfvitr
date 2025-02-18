@@ -6,7 +6,7 @@
 	<Product>The Wise Wolf</Product>
     <AssemblyName>com.binbin.TheWiseWolf</AssemblyName>
     <Description>Ulfvitr, The Wise Wolf</Description>
-    <Version>1.0.2</Version>
+    <Version>1.1.0</Version>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
@@ -39,4 +39,11 @@
       <HintPath>../../../!libs/com.stiffmeds.obeliskialcontent.dll</HintPath>
     </Reference>
   </ItemGroup>
+
+
+      <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Copy SourceFiles="$(TargetPath)" DestinationFolder="../../../../plugins" />
+    <Copy SourceFiles="$(TargetPath)" DestinationFolder="../Ulfvitr/BepInEx/plugins" />
+  </Target>
+
 </Project>

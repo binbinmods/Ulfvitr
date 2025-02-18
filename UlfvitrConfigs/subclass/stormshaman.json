@@ -3,7 +3,7 @@
     "AutoUnlock":true,
     "Cards": [
         "{\n    \"UnitsInDeck\": 2,\n    \"Card\": \"healingrain\"\n}",
-        "{\n    \"UnitsInDeck\": 4,\n    \"Card\": \"lightningstrike\"\n}",
+        "{\n    \"UnitsInDeck\": 4,\n    \"Card\": \"thunderbolt\"\n}",
         "{\n    \"UnitsInDeck\": 3,\n    \"Card\": \"zap\"\n}",
         "{\n    \"UnitsInDeck\": 2,\n    \"Card\": \"heal\"\n}",
         "{\n    \"UnitsInDeck\": 2,\n    \"Card\": \"aquavitae\"\n}",

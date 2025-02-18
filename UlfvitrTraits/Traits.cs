@@ -112,9 +112,8 @@ namespace TheWiseWolf
             // At end of turn, apply 1 Inspire for every 20 charges of Wet and
             // 1 Mitigate for every 10 charges of Regeneration
             // Increases activations of Magnet by 1.
-
-
-                Plugin.Log.LogDebug("Lifebloom Start:");
+                string traitName = "Life Bloom";
+                LogDebug($"Executing Trait {traitId}: {traitName}");
 
                 foreach (Hero hero in teamHero)
                 {

@@ -1,0 +1,9 @@
+# Version 1.1.0
+
+Update for AtO v1.5.
+
+Rebalanced most of the traits, nerfing lightning, buffing regen.
+
+# Versions 1.0.0 - 1.0.8
+
+Initial release + initial bug fixes

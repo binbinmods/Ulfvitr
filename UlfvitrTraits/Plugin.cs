@@ -16,7 +16,7 @@ namespace TheWiseWolf
         private readonly Harmony harmony = new(PluginInfo.PLUGIN_GUID);
         internal static ManualLogSource Log;
         public static string characterName = "Ulfvitr";
-        public static string subclassName = "thewisewolf";
+        public static string subclassName = "stormshaman";
 
         public static ConfigEntry<bool> EnableDebugging { get; set; }
         public static string debugBase = "Binbin - Testing " + characterName + " ";

@@ -67,7 +67,7 @@
     "EffectTrailRepeat": false,
     "EnergyCost": 2,
     "EnergyRecharge": 0,
-    "Heal": 0,
+    "Heal": 2,
     "HealAuraCurseName": "wet",
     "HealAuraCurseName2": "",
     "HealAuraCurseName3": "",
