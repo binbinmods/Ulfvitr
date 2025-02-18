@@ -1,0 +1,15 @@
+{
+    "BaseSkin": true,
+    "PerkLevel": 0,
+    "SkinGO": "skinulfvitr",
+    "SkinID": "stormshamanbase",
+    "SkinName": "Ulfvitr",
+    "SkinOrder": 0,
+    "SkinSubclass": "stormshaman",
+    "Sku": "",
+    "SpritePortrait": "GorioPortraitFlipped",
+    "SpritePortraitGrande": "GorioPortraitGrandeFlipped",
+    "SpriteSilueta": "GorioSilueta",
+    "SpriteSiluetaGrande": "GorioSiluetaGrande",
+    "SteamStat": ""
+}

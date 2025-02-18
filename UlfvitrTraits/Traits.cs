@@ -5,6 +5,7 @@ using System.Linq;
 using Obeliskial_Content;
 using static TheWiseWolf.CustomFunctions;
 using static TheWiseWolf.Plugin;
+using UnityEngine;
 
 namespace TheWiseWolf
 {
@@ -46,21 +47,22 @@ namespace TheWiseWolf
             if (_trait == "ulfvitrcalltherain")
             { // apply 1 wet to all characters at start of turn
                 string traitName = "Call the Rain";
-                if ((Object) _character.HeroData != (Object) null){
-                    LogDebug($"Executing Trait {traitId}: {traitName}");
 
-                    ApplyAuraCurseToAll("wet",1,AppliesTo.Global,sourceCharacter:_character, useCharacterMods:true);
-                                        
-                    // DisplayTraitScroll(ref _character, traitData);                    
-                }
+                LogDebug($"Executing Trait {traitId}: {traitName}");
+
+                ApplyAuraCurseToAll("wet",1,AppliesTo.Global,sourceCharacter:_character, useCharacterMods:true);
+                                    
+                // DisplayTraitScroll(ref _character, traitData);                    
+                
             }
 
                     
             else if (_trait == "ulfvitrmagnet")
-            { // 3x per turn, if you play a lightning spell that costs energy, refund 1 energy
-                // string traitName = "Magnet";
-
-                if(CanIncrementTraitActivations(traitId) && _castedCard.HasCardType(Enums.CardType.Lightning_Spell) && _castedCard.EnergyCost >= 1)
+            { // 2x per turn, if you play a lightning spell that costs energy, refund 1 energy and apply 1 spark to a random enemy
+                string traitName = "Magnet";
+                LogDebug($"Executing Trait {traitId}: {traitName}");
+                int bonusActivations = _character.HaveTrait("") ? 1 : 0;
+                if(CanIncrementTraitActivations(traitId,bonusActivations:bonusActivations) && _castedCard.HasCardType(Enums.CardType.Lightning_Spell) && _castedCard.EnergyCost >= 1)
                 {
                     _character.ModifyEnergy(1, true);  
                     Character randNPC = GetRandomCharacter(teamNpc);
@@ -75,42 +77,71 @@ namespace TheWiseWolf
                 
              
             else if (_trait == "ulfvitrregenerator")
-            {// When you apply regen, heal by wet x1                
+            {// When you apply regen, heal by wet x0.5f and apply 1 wet     
+
+                string traitName = "Regenerator";
+                LogDebug($"Executing Trait {traitId}: {traitName}");
+  
                 if (_auxString=="regeneration" && IsLivingHero(_target))
                 {
                     int targetWet = _target.GetAuraCharges("wet");
-                    float multiplier = 1.0f;
-                    int healAmount = Functions.FuncRoundToInt((float) targetWet * multiplier);
-                    
+                    float multiplier = _character.HaveTrait("ulfvitrconductor") ? 1.0f : 0.5f;
+                    int healAmount = Functions.FuncRoundToInt((float) targetWet * multiplier);                    
                     TraitHeal(ref _character, ref _target, healAmount, _trait);
+                    _target.SetAuraTrait(_character,"wet",1);
                 }
             } 
 
             else if (_trait == "ulfvitrconductor")
-            {// When you apply wet, deal sparks * 0.5 as indirect damage
+            {// When you apply wet to an enemy, deal sparks * 0.5 as indirect damage
                 
                 // done in SetEventPrefix? nvmd trying to do it here
+                string traitName = "Conductor";
+                LogDebug($"Executing Trait {traitId}: {traitName}");
+
                 if (IsLivingHero(_character) && IsLivingNPC(_target) && _auxString=="wet"){
-                    int amountToDeal = Functions.FuncRoundToInt((float)_target.GetAuraCharges("spark") * 0.5f);
+                    float multiplier = _character.HaveTrait("") ? 1.0f : 0.5f;
+                    int amountToDeal = Functions.FuncRoundToInt((float)_target.GetAuraCharges("spark") * multiplier);
                     _target.IndirectDamage(Enums.DamageType.Lightning, amountToDeal);
                 }
             } 
             
             else if (_trait == "ulfvitrlifebloom")
-            { //At end of turn, heal all heroes by wet * 0.70
-                Plugin.Log.LogDebug("Lifebloom Start:");
-                if (_character.HeroData!=null){
-                    for (int i = 0; i < teamHero.Length; i++)
-                    {
-                        if (IsLivingHero(teamHero[i]))
-                        {
-                            int healAmount = Functions.FuncRoundToInt((float)teamHero[i].GetAuraCharges("wet") * 0.70f);
-                            LogDebug("Lifebloom Heal Amount: " + healAmount);
-                            TraitHealHero(ref _character, ref teamHero[i], healAmount, _trait);
+            { 
+            // At end of turn, heal all heroes by wet * 0.70 - Deprecated
+            // At end of turn, apply 1 Inspire for every 20 charges of Wet and
+            // 1 Mitigate for every 10 charges of Regeneration
+            // Increases activations of Magnet by 1.
 
-                        }
+
+                Plugin.Log.LogDebug("Lifebloom Start:");
+
+                foreach (Hero hero in teamHero)
+                {
+                    if(!IsLivingHero(hero))
+                    {
+                        continue;
                     }
-                } 
+                    int nWet = Mathf.FloorToInt(hero.GetAuraCharges("wet"));
+                    int nRegen = hero.GetAuraCharges("regeneration");
+                    int inspireToApply = Mathf.FloorToInt(nWet*0.05f);
+                    int mitigateToApply = Mathf.FloorToInt(nRegen*0.1f);
+                    hero.SetAuraTrait(_character, "inspire", inspireToApply);
+                    hero.SetAuraTrait(_character, "mitigate", mitigateToApply);
+                }
+                
+                // if (_character.HeroData!=null){
+                //     for (int i = 0; i < teamHero.Length; i++)
+                //     {
+                //         if (IsLivingHero(teamHero[i]))
+                //         {
+                //             int healAmount = Functions.FuncRoundToInt((float)teamHero[i].GetAuraCharges("wet") * 0.70f);
+                //             LogDebug("Lifebloom Heal Amount: " + healAmount);
+                //             TraitHealHero(ref _character, ref teamHero[i], healAmount, _trait);
+
+                //         }
+                //     }
+                // } 
             }
         }
 

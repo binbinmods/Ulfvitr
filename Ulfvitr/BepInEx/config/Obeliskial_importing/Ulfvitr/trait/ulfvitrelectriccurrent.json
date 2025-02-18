@@ -1,5 +1,5 @@
 {
-    "Activation": "FinishCast",
+    "Activation": "None",
     "AuraCurseBonus1": "",
     "AuraCurseBonus2": "",
     "AuraCurseBonus3": "",
@@ -23,12 +23,12 @@
     "DamageBonusPercentValue": 0.0,
     "DamageBonusPercentValue2": 0.0,
     "DamageBonusPercentValue3": 0.0,
-    "Description": "When you play a Lightning Spell that costs Energy, refund 1 Energy and apply 1 Spark and 1 Wet to a random enemy. [2 times/turn]",
+    "Description": "",
     "HealFlatBonus": 0,
     "HealPercentBonus": 0.0,
     "HealReceivedFlatBonus": 0,
     "HealReceivedPercentBonus": 0.0,
-    "ID": "ulfvitrmagnet",
+    "ID": "ulfvitrelectriccurrent",
     "ResistModified1": "None",
     "ResistModified2": "None",
     "ResistModified3": "None",
@@ -36,8 +36,8 @@
     "ResistModifiedValue2": 0,
     "ResistModifiedValue3": 0,
     "TimesPerRound": 0,
-    "TimesPerTurn": 2,
-    "TraitCard": "",
+    "TimesPerTurn": 0,
+    "TraitCard": "ulfvitrelectriccurrent",
     "TraitCardForAllHeroes": "",
-    "TraitName": "Magnet"
+    "TraitName": "Electric Current"
 }
