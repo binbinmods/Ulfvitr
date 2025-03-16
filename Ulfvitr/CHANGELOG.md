@@ -1,3 +1,7 @@
+# Version 1.1.1
+
+Updated Regenerator text and updated its usage cap
+
 # Version 1.1.0
 
 Update for AtO v1.5.

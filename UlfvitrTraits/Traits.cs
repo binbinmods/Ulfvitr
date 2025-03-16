@@ -82,13 +82,14 @@ namespace TheWiseWolf
                 string traitName = "Regenerator";
                 LogDebug($"Executing Trait {traitId}: {traitName}");
   
-                if (_auxString=="regeneration" && IsLivingHero(_target))
+                if (CanIncrementTraitActivations(traitId) && _auxString=="regeneration" && IsLivingHero(_target))
                 {
                     int targetWet = _target.GetAuraCharges("wet");
                     float multiplier = _character.HaveTrait("ulfvitrconductor") ? 1.0f : 0.5f;
                     int healAmount = Functions.FuncRoundToInt((float) targetWet * multiplier);                    
                     TraitHeal(ref _character, ref _target, healAmount, _trait);
                     _target.SetAuraTrait(_character,"wet",1);
+                    IncrementTraitActivations(traitId);
                 }
             } 
 
