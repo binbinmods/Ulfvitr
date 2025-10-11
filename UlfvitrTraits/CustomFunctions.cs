@@ -1088,7 +1088,7 @@ namespace TheWiseWolf
         /// <param name="useCharacterMods">whether or not to use the AC can be buffered</param>
         public static void ApplyAuraCurseToAll(string acToApply, int nToApply, AppliesTo appliesTo, Character sourceCharacter = null, bool useCharacterMods = false, bool isPreventable = true)
         {
-            LogInfo("ApplyAuraCurseToAll");
+            LogDebug("ApplyAuraCurseToAll");
             if (MatchManager.Instance == null) { LogError("No MatchManager"); return; }
             if (sourceCharacter == null && useCharacterMods) { LogError("No Source Character"); return; }
 
@@ -1368,7 +1368,7 @@ namespace TheWiseWolf
             for (int index = 0; index < heroHand.Count; ++index)
             {
                 CardData cardData = MatchManager.Instance.GetCardData(heroHand[index]);
-                if ((Object)cardData != (Object)null && (cardData.GetCardTypes().Contains(cardType)||cardType==Enums.CardType.None) && cardData.GetCardFinalCost() > num1)
+                if ((Object)cardData != (Object)null && (cardData.GetCardTypes().Contains(cardType) || cardType == Enums.CardType.None) && cardData.GetCardFinalCost() > num1)
                     num1 = cardData.GetCardFinalCost();
             }
             if (num1 <= 0)
@@ -1376,7 +1376,7 @@ namespace TheWiseWolf
             for (int index = 0; index < heroHand.Count; ++index)
             {
                 CardData cardData = MatchManager.Instance.GetCardData(heroHand[index]);
-                if ((Object)cardData != (Object)null && (cardData.GetCardTypes().Contains(cardType)||cardType==Enums.CardType.None) && cardData.GetCardFinalCost() >= num1)
+                if ((Object)cardData != (Object)null && (cardData.GetCardTypes().Contains(cardType) || cardType == Enums.CardType.None) && cardData.GetCardFinalCost() >= num1)
                     cardDataList.Add(cardData);
             }
             if (cardDataList.Count <= 0)
@@ -1448,62 +1448,62 @@ namespace TheWiseWolf
 
 
 
-        // public static void WhenYouGainXGainY(string gainedAuraCurse, string desiredAuraCurse, string appliedAuraCurse, int n_charges_incoming, int n_bonus_charges, float multiplier, ref Character _character, string traitName)
-        // {
-        //     // Grants a multiplier or bonus charged amount of a second auraCurse given a first auraCurse
-        //     Plugin.Log.LogDebug("WhenYouGainXGainY Debug Start");
-        //     if (MatchManager.Instance != null && gainedAuraCurse != null && _character.HeroData != null)
-        //     {
-        //         Plugin.Log.LogDebug("WhenYouGainXGainY inside conditions 1");
-        //         if (gainedAuraCurse == desiredAuraCurse)
-        //         {
-        //             Plugin.Log.LogDebug("WhenYouGainXGainY inside conditions 2");
-        //             int toApply = RoundToInt((n_charges_incoming + n_bonus_charges) * multiplier);
-        //             _character.SetAuraTrait(_character, appliedAuraCurse, toApply);
-        //             _character.HeroItem.ScrollCombatText(Texts.Instance.GetText("traits_" + traitName), Enums.CombatScrollEffectType.Trait);
-        //         }
-        //     }
-        // }
+// public static void WhenYouGainXGainY(string gainedAuraCurse, string desiredAuraCurse, string appliedAuraCurse, int n_charges_incoming, int n_bonus_charges, float multiplier, ref Character _character, string traitName)
+// {
+//     // Grants a multiplier or bonus charged amount of a second auraCurse given a first auraCurse
+//     Plugin.Log.LogDebug("WhenYouGainXGainY Debug Start");
+//     if (MatchManager.Instance != null && gainedAuraCurse != null && _character.HeroData != null)
+//     {
+//         Plugin.Log.LogDebug("WhenYouGainXGainY inside conditions 1");
+//         if (gainedAuraCurse == desiredAuraCurse)
+//         {
+//             Plugin.Log.LogDebug("WhenYouGainXGainY inside conditions 2");
+//             int toApply = RoundToInt((n_charges_incoming + n_bonus_charges) * multiplier);
+//             _character.SetAuraTrait(_character, appliedAuraCurse, toApply);
+//             _character.HeroItem.ScrollCombatText(Texts.Instance.GetText("traits_" + traitName), Enums.CombatScrollEffectType.Trait);
+//         }
+//     }
+// }
 
-        // public static void WhenYouPlayXGainY(Enums.CardType desiredCardType, string desiredAuraCurse, int n_charges, CardData castedCard, ref Character _character, string traitName)
-        // {
-        //     // Grants n_charges of desiredAuraCurse to self when you play a desired cardtype
-        //     //Plugin.Log.LogDebug("WhenYouPlayXGainY Debug Start");
-        //     if (MatchManager.Instance != null && castedCard != null && _character.HeroData != null)
-        //     {
-        //         //Plugin.Log.LogDebug("WhenYouPlayXGainY inside conditions 1");
-        //         if (castedCard.GetCardTypes().Contains(desiredCardType))
-        //         {
-        //             //Plugin.Log.LogDebug("WhenYouPlayXGainY inside conditions 2");
+// public static void WhenYouPlayXGainY(Enums.CardType desiredCardType, string desiredAuraCurse, int n_charges, CardData castedCard, ref Character _character, string traitName)
+// {
+//     // Grants n_charges of desiredAuraCurse to self when you play a desired cardtype
+//     //Plugin.Log.LogDebug("WhenYouPlayXGainY Debug Start");
+//     if (MatchManager.Instance != null && castedCard != null && _character.HeroData != null)
+//     {
+//         //Plugin.Log.LogDebug("WhenYouPlayXGainY inside conditions 1");
+//         if (castedCard.GetCardTypes().Contains(desiredCardType))
+//         {
+//             //Plugin.Log.LogDebug("WhenYouPlayXGainY inside conditions 2");
 
-        //             _character.SetAuraTrait(_character, desiredAuraCurse, n_charges);
-        //             _character.HeroItem.ScrollCombatText(Texts.Instance.GetText("traits_" + traitName), Enums.CombatScrollEffectType.Trait);
-        //         }
-        //     }
-        // }
+//             _character.SetAuraTrait(_character, desiredAuraCurse, n_charges);
+//             _character.HeroItem.ScrollCombatText(Texts.Instance.GetText("traits_" + traitName), Enums.CombatScrollEffectType.Trait);
+//         }
+//     }
+// }
 
-        // public static void ReduceCostByStacks(Enums.CardType cardType, string auraCurseName, int n_charges, ref Character _character, ref List<string> heroHand, ref List<CardData> cardDataList, string traitName, bool applyToAllCards)
-        // {
-        //     // Reduces the cost of all cards of cardType by 1 for every n_charges of the auraCurse
-        //     if (!((UnityEngine.Object)_character.HeroData != (UnityEngine.Object)null))
-        //         return;
-        //     int num = FloorToInt((float)(_character.EffectCharges(auraCurseName) / n_charges));
-        //     if (num <= 0)
-        //         return;
-        //     for (int index = 0; index < heroHand.Count; ++index)
-        //     {
-        //         CardData cardData = MatchManager.Instance.GetCardData(heroHand[index]);
-        //         if ((cardData.GetCardFinalCost() > 0) && (cardData.GetCardTypes().Contains(cardType) || applyToAllCards)) //previous .Contains(Enums.CardType.Attack)
-        //             cardDataList.Add(cardData);
-        //     }
-        //     for (int index = 0; index < cardDataList.Count; ++index)
-        //     {
-        //         cardDataList[index].EnergyReductionTemporal += num;
-        //         MatchManager.Instance.UpdateHandCards();
-        //         CardItem fromTableByIndex = MatchManager.Instance.GetCardFromTableByIndex(cardDataList[index].InternalId);
-        //         fromTableByIndex.PlayDissolveParticle();
-        //         fromTableByIndex.ShowEnergyModification(-num);
-        //         _character.HeroItem.ScrollCombatText(Texts.Instance.GetText("traits_" + traitName), Enums.CombatScrollEffectType.Trait);
-        //         MatchManager.Instance.CreateLogCardModification(cardDataList[index].InternalId, MatchManager.Instance.GetHero(_character.HeroIndex));
-        //     }
-        // }
+// public static void ReduceCostByStacks(Enums.CardType cardType, string auraCurseName, int n_charges, ref Character _character, ref List<string> heroHand, ref List<CardData> cardDataList, string traitName, bool applyToAllCards)
+// {
+//     // Reduces the cost of all cards of cardType by 1 for every n_charges of the auraCurse
+//     if (!((UnityEngine.Object)_character.HeroData != (UnityEngine.Object)null))
+//         return;
+//     int num = FloorToInt((float)(_character.EffectCharges(auraCurseName) / n_charges));
+//     if (num <= 0)
+//         return;
+//     for (int index = 0; index < heroHand.Count; ++index)
+//     {
+//         CardData cardData = MatchManager.Instance.GetCardData(heroHand[index]);
+//         if ((cardData.GetCardFinalCost() > 0) && (cardData.GetCardTypes().Contains(cardType) || applyToAllCards)) //previous .Contains(Enums.CardType.Attack)
+//             cardDataList.Add(cardData);
+//     }
+//     for (int index = 0; index < cardDataList.Count; ++index)
+//     {
+//         cardDataList[index].EnergyReductionTemporal += num;
+//         MatchManager.Instance.UpdateHandCards();
+//         CardItem fromTableByIndex = MatchManager.Instance.GetCardFromTableByIndex(cardDataList[index].InternalId);
+//         fromTableByIndex.PlayDissolveParticle();
+//         fromTableByIndex.ShowEnergyModification(-num);
+//         _character.HeroItem.ScrollCombatText(Texts.Instance.GetText("traits_" + traitName), Enums.CombatScrollEffectType.Trait);
+//         MatchManager.Instance.CreateLogCardModification(cardDataList[index].InternalId, MatchManager.Instance.GetHero(_character.HeroIndex));
+//     }
+// }

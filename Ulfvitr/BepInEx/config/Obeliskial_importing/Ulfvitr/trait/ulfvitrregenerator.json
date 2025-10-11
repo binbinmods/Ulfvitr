@@ -23,7 +23,7 @@
     "DamageBonusPercentValue": 0.0,
     "DamageBonusPercentValue2": 0.0,
     "DamageBonusPercentValue3": 0.0,
-    "Description": "Regeneration +1. When you apply Regeneration to a hero heal them by the amount of Wet on them. This heal is not affected by modifiers.",
+    "Description": "Regeneration +1. When you apply Regeneration to a hero heal them by the amount of Wet on them and apply 1 Wet to them. This heal is not affected by modifiers. [5x/turn]",
     "HealFlatBonus": 0,
     "HealPercentBonus": 0.0,
     "HealReceivedFlatBonus": 0,
@@ -36,7 +36,7 @@
     "ResistModifiedValue2": 0,
     "ResistModifiedValue3": 0,
     "TimesPerRound": 0,
-    "TimesPerTurn": 4,
+    "TimesPerTurn": 6,
     "TraitCard": "",
     "TraitCardForAllHeroes": "",
     "TraitName": "Regenerator"
