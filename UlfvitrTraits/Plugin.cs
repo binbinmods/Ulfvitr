@@ -28,7 +28,7 @@ namespace TheWiseWolf
             Log.LogInfo($"{PluginInfo.PLUGIN_GUID} {PluginInfo.PLUGIN_VERSION} has loaded!");
             // register with Obeliskial Essentials
 
-            EnableDebugging = Config.Bind(new ConfigDefinition(subclassName, "Enable Debugging"), true, new ConfigDescription("Enables debugging logs."));
+            EnableDebugging = Config.Bind(new ConfigDefinition(subclassName, "Enable Debugging"), false, new ConfigDescription("Enables debugging logs."));
             // register with Obeliskial Essentials
             RegisterMod(
                 _name: PluginInfo.PLUGIN_NAME,
@@ -49,9 +49,9 @@ namespace TheWiseWolf
             if (EnableDebugging.Value)
             {
                 Log.LogDebug(debugBase + msg);
-            }            
+            }
         }
-        
+
         internal static void LogInfo(string msg)
         {
             Log.LogInfo(debugBase + msg);
@@ -60,7 +60,7 @@ namespace TheWiseWolf
         {
             Log.LogError(debugBase + msg);
         }
-    
-    
+
+
     }
 }

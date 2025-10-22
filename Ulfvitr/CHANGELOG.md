@@ -2,6 +2,8 @@
 
 Update for AtO v1.6.22
 
+Minor tweaks to some traits to make them (namely to descriptions to align with how they are working on the backend)
+
 # Version 1.1.1
 
 Updated Regenerator text and updated its usage cap

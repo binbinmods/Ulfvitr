@@ -60,10 +60,11 @@ namespace TheWiseWolf
             else if (_trait == "ulfvitrmagnet")
             { // 2x per turn, if you play a lightning spell that costs energy, refund 1 energy and apply 1 spark to a random enemy
                 string traitName = "Magnet";
-                LogDebug($"Executing Trait {traitId}: {traitName}");
+
                 int bonusActivations = _character.HaveTrait("") ? 1 : 0;
                 if (CanIncrementTraitActivations(traitId, bonusActivations: bonusActivations) && _castedCard.HasCardType(Enums.CardType.Lightning_Spell) && _castedCard.EnergyCost >= 1)
                 {
+                    LogDebug($"Executing Trait {traitId}: {traitName}");
                     _character.ModifyEnergy(1, true);
                     Character randNPC = GetRandomCharacter(teamNpc);
                     // NPC randNPC = teamNpc[MatchManager.Instance.GetRandomIntRange(0,3)];
@@ -101,10 +102,11 @@ namespace TheWiseWolf
 
                 // done in SetEventPrefix? nvmd trying to do it here
                 string traitName = "Conductor";
-                LogDebug($"Executing Trait {traitId}: {traitName}");
+
 
                 if (IsLivingHero(_character) && IsLivingNPC(_target) && _auxString == "wet")
                 {
+                    LogDebug($"Executing Trait {traitId}: {traitName}");
                     float multiplier = _character.HaveTrait("") ? 1.0f : 0.5f;
                     int amountToDeal = Functions.FuncRoundToInt((float)_target.GetAuraCharges("spark") * multiplier);
                     _target.IndirectDamage(Enums.DamageType.Lightning, amountToDeal);
@@ -128,8 +130,8 @@ namespace TheWiseWolf
                     }
                     int nWet = Mathf.FloorToInt(hero.GetAuraCharges("wet"));
                     int nRegen = hero.GetAuraCharges("regeneration");
-                    int inspireToApply = Mathf.FloorToInt(nWet * 0.05f);
-                    int mitigateToApply = Mathf.FloorToInt(nRegen * 0.1f);
+                    int inspireToApply = nWet / 20;
+                    int mitigateToApply = nRegen / 10;
                     hero.SetAuraTrait(_character, "inspire", inspireToApply);
                     hero.SetAuraTrait(_character, "mitigate", mitigateToApply);
                 }

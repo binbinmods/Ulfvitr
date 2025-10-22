@@ -23,7 +23,7 @@
     "DamageBonusPercentValue": 0.0,
     "DamageBonusPercentValue2": 0.0,
     "DamageBonusPercentValue3": 0.0,
-    "Description": "Spark +2. Applying Wet to monsters deals Lighting Damage equal to their Spark x0.5. This damage is not affected by modifiers. If you have Regenerator, double its healing.",
+    "Description": "Spark +2. Applying Wet to monsters deals Lighting Damage equal to their half their Spark. This damage is not affected by modifiers. If you have Regenerator, double its healing.",
     "HealFlatBonus": 0,
     "HealPercentBonus": 0.0,
     "HealReceivedFlatBonus": 0,
