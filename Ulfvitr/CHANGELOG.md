@@ -1,3 +1,7 @@
+# Version 1.3.0
+
+Update for AtO v1.7.0
+
 # Version 1.2.0
 
 Update for AtO v1.6.22
