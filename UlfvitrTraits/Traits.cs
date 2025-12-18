@@ -18,18 +18,6 @@ namespace TheWiseWolf
         public static void DoCustomTrait(string _trait, ref Trait __instance, ref Enums.EventActivation _theEvent, ref Character _character, ref Character _target, ref int _auxInt, ref string _auxString, ref CardData _castedCard)
         {
             // get info you may need
-            // Enums.EventActivation _theEvent = Traverse.Create(__instance).Field("theEvent").GetValue<Enums.EventActivation>();
-            // Character _character = Traverse.Create(__instance).Field("character").GetValue<Character>();
-            // Character _target = Traverse.Create(__instance).Field("target").GetValue<Character>();
-            // int _auxInt = Traverse.Create(__instance).Field("auxInt").GetValue<int>();
-            // string _auxString = Traverse.Create(__instance).Field("auxString").GetValue<string>();
-            // CardData _castedCard = Traverse.Create(__instance).Field("castedCard").GetValue<CardData>();
-            // Traverse.Create(__instance).Field("character").SetValue(_character);
-            // Traverse.Create(__instance).Field("target").SetValue(_target);
-            // Traverse.Create(__instance).Field("theEvent").SetValue(_theEvent);
-            // Traverse.Create(__instance).Field("auxInt").SetValue(_auxInt);
-            // Traverse.Create(__instance).Field("auxString").SetValue(_auxString);
-            // Traverse.Create(__instance).Field("castedCard").SetValue(_castedCard);
             TraitData traitData = Globals.Instance.GetTraitData(_trait);
             List<CardData> cardDataList = [];
             List<string> heroHand = MatchManager.Instance.GetHeroHand(_character.HeroIndex);

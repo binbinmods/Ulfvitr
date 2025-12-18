@@ -2,6 +2,8 @@
 
 Update for AtO v1.7.0
 
+Added Singularity Deck
+
 # Version 1.2.0
 
 Update for AtO v1.6.22

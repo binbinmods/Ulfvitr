@@ -66,5 +66,22 @@
     "Trait3A": "ulfvitrstormchanneler",
     "Trait3B": "ulfvitrtearsofthespirits",
     "Trait4A": "ulfvitrconductor",
-    "Trait4B": "ulfvitrlifebloom"
+    "Trait4B": "ulfvitrlifebloom",
+    "CardsSingularity": ["ulfvitrhealingstream", 
+        "healingrain", 
+        "thunderbolt", 
+        "zap", 
+        "heal", 
+        "aquavitae", 
+        "prayerofhealing", 
+        "dispelmagic", 
+        "bindingheal", 
+        "chainlightning", 
+        "chargebattery", 
+        "shocknova", 
+        "waterjet", 
+        "transmision", 
+        "holywater"
+    ]
+
 }
