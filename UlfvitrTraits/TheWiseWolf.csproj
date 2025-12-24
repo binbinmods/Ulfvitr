@@ -6,7 +6,7 @@
 	<Product>The Wise Wolf</Product>
     <AssemblyName>com.binbin.TheWiseWolf</AssemblyName>
     <Description>Ulfvitr, The Wise Wolf</Description>
-    <Version>1.3.0</Version>
+    <Version>1.3.1</Version>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
@@ -41,9 +41,10 @@
   </ItemGroup>
 
 
-      <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
     <Copy SourceFiles="$(TargetPath)" DestinationFolder="../../../../plugins" />
     <Copy SourceFiles="$(TargetPath)" DestinationFolder="../Ulfvitr/BepInEx/plugins" />
-  </Target>
+    <Exec Command="/usr/bin/python3 &quot;$(ProjectDir)../ship_mod.py&quot;" />
+</Target>
 
 </Project>
