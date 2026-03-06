@@ -1,3 +1,7 @@
+# Version 1.3.2
+
+Updated for AtO v1.7.4.2
+
 # Version 1.3.1
 
 Renamed Storm Channeler to Storm Channelling

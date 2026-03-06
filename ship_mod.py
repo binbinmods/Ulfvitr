@@ -7,17 +7,16 @@ def copy_directory(source_dir: str, destination_dir: str):
     destination_path = Path(destination_dir)
         
     destination_path.mkdir(parents=True, exist_ok=True)
-        
     for item in source_path.iterdir():
         destination_filepath = destination_path / item.name
         if item.is_dir():
-            if destination_filepath.exists():
+            if destination_filepath.exists():                
                 shutil.rmtree(destination_filepath)
             shutil.copytree(item, destination_filepath)
         else:
             shutil.copy2(item, destination_filepath)
             
-    print(f"Directory Copied: {config_dir}")
+    print(f"Directory Copied")
 
 
 def zip_mods():
@@ -35,19 +34,12 @@ def zip_mods():
 
 if __name__ == "__main__":  
     mod_dir = "Ulfvitr"
-    config_dir = f"{mod_dir}Configs"    
     content_destination_dir = mod_dir
-    
     script_dir = os.path.dirname(os.path.abspath(__file__))
     
-    # Copy to Local Game
-    source = f"{script_dir}/{config_dir}"
+    source = f"{script_dir}/{mod_dir}/BepInEx/config/Obeliskial_importing/{mod_dir}"
     bepinex_dir = os.path.abspath(os.path.join(script_dir, '..', '..', '..'))
-    destination = f"{bepinex_dir}/config/Obeliskial_importing/{content_destination_dir}"
+    destination = f"{bepinex_dir}/config/Obeliskial_importing/{content_destination_dir}"    
+
     copy_directory(source, destination)
-
-    # Copy to Local Mod folder to zip
-    mod_destination = f"{script_dir}/{mod_dir}/BepInEx/config/Obeliskial_importing/{content_destination_dir}"
-    copy_directory(source, mod_destination)
-
     zip_mods()
